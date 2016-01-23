@@ -11,6 +11,9 @@ gem 'uglifier', '>= 1.3.0'
 gem 'jbuilder', '~> 2.0'
 # Use Puma as the app server
 gem 'puma'
+
+gem 'slim'
+
 gem 'dotenv-rails'
 gem 'omniauth'
 gem 'omniauth-goodreads', github: 'captn3m0/omniauth-goodreads'
