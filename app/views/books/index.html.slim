@@ -1,2 +1,5 @@
-- for book in @books
-  p= book
+- for item in @books
+  h1= link_to item.book.title, item.book.link, target: :blank
+  p= image_tag item.book.image_url
+  p= item
+  hr
