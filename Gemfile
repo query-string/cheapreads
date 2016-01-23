@@ -14,6 +14,9 @@ gem 'puma'
 gem 'dotenv-rails'
 gem 'omniauth'
 gem 'omniauth-goodreads', github: 'captn3m0/omniauth-goodreads'
+gem 'goodreads', github: 'sosedoff/goodreads'
+gem 'rest-client'
+gem 'xml-simple'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
