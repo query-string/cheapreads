@@ -19,8 +19,8 @@ ActiveRecord::Schema.define(version: 20160123045538) do
   create_table "authentications", force: :cascade do |t|
     t.string   "provider",   null: false
     t.string   "uid",        null: false
-    t.string   "key"
     t.string   "secret",     null: false
+    t.string   "token"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
