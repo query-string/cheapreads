@@ -6,7 +6,7 @@ class CreateBooks < ActiveRecord::Migration[5.0]
       t.string :title, nil: false
       t.text :link
       t.text :description
-      t.integer :average_rating
+      t.string :average_rating
       t.integer :ratings_count
       t.string :image
       t.integer :publication_year

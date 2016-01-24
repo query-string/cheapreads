@@ -10,7 +10,7 @@ html
   body
     h1 cheapreads
     - if current_authentication
-      = link_to "logout", authentication_path(current_authentication.id), method: :delete
+      | #{link_to "synchronize books", books_path, method: :post} #{link_to "logout", authentication_path(current_authentication.id), method: :delete}
     - else
       = link_to "login", "/authentication/goodreads"
     hr

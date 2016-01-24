@@ -31,7 +31,7 @@ ActiveRecord::Schema.define(version: 20160124135757) do
     t.string   "title"
     t.text     "link"
     t.text     "description"
-    t.integer  "average_rating"
+    t.string   "average_rating"
     t.integer  "ratings_count"
     t.string   "image"
     t.integer  "publication_year"

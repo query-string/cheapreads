@@ -3,6 +3,6 @@ Rails.application.routes.draw do
   namespace :authentication do
     get ":provider/callback", to: "omniauth#create"
   end
-  resources :books, only: [:index, :show]
+  resources :books, only: [:index, :show, :create]
   root "books#index"
 end
