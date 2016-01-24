@@ -1,14 +1,18 @@
 - if @books.any?
   table width="100%"
+    tr
+      td
+      td
+      td align="right" Year
+      td align="right" Rating
+      td align="right" Ratings count
     - for book in @books
-      tr valign="top"
-        td= image_tag book.image
+      tr valign="top"gi
+        td width="120"= image_tag book.image
         td
           h2= link_to book.title, book.link, target: :blank
           p= link_to book.author_name, book.author_link, target: :blank
-          p= book.publication_year
           p= strip_tags book.description
-        td
-          p= book.average_rating
-        td
-          p= book.ratings_count
+        td align="right" width="100"= book.publication_year
+        td align="right" width="100"= book.average_rating
+        td align="right" width="100"= book.ratings_count
