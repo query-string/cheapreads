@@ -1,0 +1,29 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  uid: 1
+  isbn: MyString
+  title: MyString
+  link: MyText
+  description: MyText
+  average_rating: 1
+  ratings_count: 1
+  image: MyString
+  publication_year: 1
+  date_added: 2016-01-24 20:57:57
+  author_name: MyString
+  author_link: MyString
+
+two:
+  uid: 1
+  isbn: MyString
+  title: MyString
+  link: MyText
+  description: MyText
+  average_rating: 1
+  ratings_count: 1
+  image: MyString
+  publication_year: 1
+  date_added: 2016-01-24 20:57:57
+  author_name: MyString
+  author_link: MyString

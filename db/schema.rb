@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160123045538) do
+ActiveRecord::Schema.define(version: 20160124135757) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,28 @@ ActiveRecord::Schema.define(version: 20160123045538) do
     t.string   "token"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "books", force: :cascade do |t|
+    t.integer  "uid"
+    t.string   "isbn"
+    t.string   "title"
+    t.text     "link"
+    t.text     "description"
+    t.integer  "average_rating"
+    t.integer  "ratings_count"
+    t.string   "image"
+    t.integer  "publication_year"
+    t.datetime "date_added"
+    t.string   "author_name"
+    t.string   "author_link"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.index ["average_rating"], name: "index_books_on_average_rating", using: :btree
+    t.index ["publication_year"], name: "index_books_on_publication_year", using: :btree
+    t.index ["ratings_count"], name: "index_books_on_ratings_count", using: :btree
+    t.index ["title"], name: "index_books_on_title", using: :btree
+    t.index ["uid"], name: "index_books_on_uid", using: :btree
   end
 
 end
