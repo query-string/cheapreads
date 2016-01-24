@@ -1,14 +1,15 @@
-table width="100%"
-  - for item in @books
-    tr valign="top"
-      td= image_tag item.book.image_url
-      td
-        h1= link_to item.book.title, item.book.link, target: :blank
-        p= link_to item.book.authors.author.name, item.book.authors.author.link, target: :blank
-        p= item.book.publication_year
-        p #{item.id} #{item.book.isbn} #{Date.parse(item.date_addedgt).strftime("%d.%m.%Y")}
-        p= strip_tags item.book.description
-      td
-        p= item.book.average_rating
-      td
-        p= item.book.ratings_count
+- if @books.any?
+  table width="100%"
+    - for item in @books
+      tr valign="top"
+        td= image_tag item.book.image_url
+        td
+          h2= link_to item.book.title, item.book.link, target: :blank
+          p= link_to item.book.authors.author.name, item.book.authors.author.link, target: :blank
+          p= item.book.publication_year
+          p #{item.id} #{item.book.isbn} #{Date.parse(item.date_added).strftime("%d.%m.%Y")}
+          p= strip_tags item.book.description
+        td
+          p= item.book.average_rating
+        td
+          p= item.book.ratings_count

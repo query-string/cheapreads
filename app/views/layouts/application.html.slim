@@ -5,6 +5,13 @@ html
     title Cheapreads
     = csrf_meta_tags
     = action_cable_meta_tag
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = stylesheet_link_tag 'application', media: 'all'
   body
+    h1 cheapreads
+    - if current_authentication
+      = link_to "logout", authentication_path(current_authentication.id), method: :delete
+    - else
+      = link_to "login", "/authentication/goodreads"
+    hr
     = yield
