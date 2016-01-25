@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160124135757) do
+ActiveRecord::Schema.define(version: 20160127100402) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(version: 20160124135757) do
     t.string   "author_link"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
+    t.integer  "pages"
     t.index ["average_rating"], name: "index_books_on_average_rating", using: :btree
     t.index ["publication_year"], name: "index_books_on_publication_year", using: :btree
     t.index ["ratings_count"], name: "index_books_on_ratings_count", using: :btree

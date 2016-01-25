@@ -2,22 +2,23 @@ class Book < ApplicationRecord
   validates :uid, presence: true, uniqueness: true
   validates :title, presence: true
 
-  def self.import(goodreads)
-    unless all.pluck(:uid).include?(goodreads.id)
-      self.create(
-        uid:              goodreads.id,
-        isbn:             goodreads.book.isbn,
-        title:            goodreads.book.title,
-        link:             goodreads.book.link,
-        description:      goodreads.book.description,
-        average_rating:   goodreads.book.average_rating,
-        ratings_count:    goodreads.book.ratings_count,
-        image:            goodreads.book.image_url,
-        publication_year: goodreads.book.publication_year,
-        date_added:       Date.parse(goodreads.date_added),
-        author_name:      goodreads.book.authors.author.name,
-        author_link:      goodreads.book.authors.author.link
-      )
+  def self.import(gr)
+    # Create book if haven't existed
+    book = self.where(uid: gr.id).first_or_create do |book|
+      book.isbn             = gr.book.isbn
+      book.title            = gr.book.title
+      book.link             = gr.book.link
+      book.description      = gr.book.description
+      book.publication_year = gr.book.publication_year
+      book.date_added       = Date.parse(gr.date_added)
+      book.author_name      = gr.book.authors.author.name
+      book.author_link      = gr.book.authors.author.link
     end
+    # Update book properties
+    book.pages          = gr.book.num_pages
+    book.average_rating = gr.book.average_rating
+    book.ratings_count  = gr.book.ratings_count
+    book.image          = gr.book.image_url
+    book.save
   end
 end
