@@ -3,9 +3,10 @@
     tr
       td
       td
-      td align="right" Year
-      td align="right" Rating
-      td align="right" Ratings count
+      td align="right"= link_to "Year", sort_books_path("publication_year")
+      td align="right"= link_to "Pages", sort_books_path("pages")
+      td align="right"= link_to "Rating", sort_books_path("average_rating")
+      td align="right"= link_to "Ratings count", sort_books_path("ratings_count")
     - for book in @books
       tr valign="top"
         td width="120"= image_tag book.image
@@ -14,5 +15,6 @@
           p= link_to book.author_name, book.author_link, target: :blank
           p= strip_tags book.description
         td align="right" width="100"= book.publication_year
+        td align="right" width="100"= book.pages
         td align="right" width="100"= book.average_rating
         td align="right" width="100"= book.ratings_count
