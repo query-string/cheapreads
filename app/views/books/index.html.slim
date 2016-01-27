@@ -3,10 +3,10 @@
     tr
       td
       td
-      td align="right"= link_to "Year", sort_books_path("publication_year")
-      td align="right"= link_to "Pages", sort_books_path("pages")
-      td align="right"= link_to "Rating", sort_books_path("average_rating")
-      td align="right"= link_to "Ratings count", sort_books_path("ratings_count")
+      td align="right"= link_to "Year", sort_books_path("publication_year", params[:order_by] == "DESC" ? "ASC" : "DESC")
+      td align="right"= link_to "Pages", sort_books_path("pages", params[:order_by] == "ASC" ? "DESC" : "ASC")
+      td align="right"= link_to "Rating", sort_books_path("average_rating", params[:order_by] == "DESC" ? "ASC" : "DESC")
+      td align="right"= link_to "Ratings count", sort_books_path("ratings_count", params[:order_by] == "DESC" ? "ASC" : "DESC")
     - for book in @books
       tr valign="top"
         td width="120"= image_tag book.image

@@ -8,7 +8,7 @@ html
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = stylesheet_link_tag 'application', media: 'all'
   body
-    h1 cheapreads
+    h1= link_to "cheapreads", root_path
     - if current_authentication
       | #{link_to "synchronize books", books_path, method: :post} #{link_to "logout", authentication_path(current_authentication.id), method: :delete}
     - else

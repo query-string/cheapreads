@@ -1,6 +1,6 @@
 class BooksController < ApplicationController
   def index
-    @books = Book.all.order("#{sort_by} DESC")
+    @books = Book.all.order("#{sort_by} #{order_by}")
   end
 
   def create
@@ -15,5 +15,9 @@ class BooksController < ApplicationController
 
   def sort_by
     params[:sort_by].present? ? params[:sort_by] : "average_rating"
+  end
+
+  def order_by
+    params[:order_by].present? ? params[:order_by] : "DESC"
   end
 end
