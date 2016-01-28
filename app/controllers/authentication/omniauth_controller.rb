@@ -10,13 +10,14 @@ class Authentication::OmniauthController < ApplicationController
       create_authentication
     end
 
-    private
+  end
 
-    def create_authentication
-      authentication = Authentication.new(provider: omniauth.provider, uid: omniauth.uid, secret: omniauth.credentials.secret, token: omniauth.credentials.token)
-      notice         = authentication.save ? "Succesfully created" : "Something went wrong..."
+  private
 
-      redirect_to root_path, flash: {notice: notice}
-    end
+  def create_authentication
+    authentication = Authentication.new(provider: omniauth.provider, uid: omniauth.uid, secret: omniauth.credentials.secret, token: omniauth.credentials.token)
+    notice         = authentication.save ? "Succesfully created" : "Something went wrong..."
+
+    redirect_to root_path, flash: {notice: notice}
   end
 end

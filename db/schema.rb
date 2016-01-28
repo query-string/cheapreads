@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160127110519) do
+ActiveRecord::Schema.define(version: 20160128121237) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,13 +34,15 @@ ActiveRecord::Schema.define(version: 20160127110519) do
     t.string   "average_rating"
     t.integer  "ratings_count"
     t.string   "image"
-    t.integer  "publication_year", default: 0
+    t.integer  "publication_year",   default: 0
     t.datetime "date_added"
     t.string   "author_name"
     t.string   "author_link"
-    t.datetime "created_at",                   null: false
-    t.datetime "updated_at",                   null: false
-    t.integer  "pages",            default: 0
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+    t.integer  "pages",              default: 0
+    t.float    "amazon_paper_price"
+    t.string   "amazon_url"
     t.index ["average_rating"], name: "index_books_on_average_rating", using: :btree
     t.index ["publication_year"], name: "index_books_on_publication_year", using: :btree
     t.index ["ratings_count"], name: "index_books_on_ratings_count", using: :btree

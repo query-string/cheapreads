@@ -13,6 +13,8 @@ class BooksController < ApplicationController
 
   private
 
+  # @TODO: Filter params values
+
   def sort_by
     params[:sort_by].present? ? params[:sort_by] : "average_rating"
   end

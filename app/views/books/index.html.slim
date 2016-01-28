@@ -3,10 +3,12 @@
     tr
       td
       td
-      td align="right"= link_to "Year", sort_books_path("publication_year", params[:order_by] == "DESC" ? "ASC" : "DESC")
-      td align="right"= link_to "Pages", sort_books_path("pages", params[:order_by] == "ASC" ? "DESC" : "ASC")
+      - # @TODO: Wrap up to helper
       td align="right"= link_to "Rating", sort_books_path("average_rating", params[:order_by] == "DESC" ? "ASC" : "DESC")
-      td align="right"= link_to "Ratings count", sort_books_path("ratings_count", params[:order_by] == "DESC" ? "ASC" : "DESC")
+      td align="right"= link_to "Paper price", sort_books_path("amazon_paper_price", params[:order_by] == "ASC" ? "DESC" : "ASC")
+      td align="right"= link_to "Pages", sort_books_path("pages", params[:order_by] == "ASC" ? "DESC" : "ASC")
+      td align="right"= link_to "Year", sort_books_path("publication_year", params[:order_by] == "DESC" ? "ASC" : "DESC")
+      td align="right"= link_to "Rated", sort_books_path("ratings_count", params[:order_by] == "DESC" ? "ASC" : "DESC")
     - for book in @books
       tr valign="top"
         td width="120"= image_tag book.image
@@ -14,7 +16,8 @@
           h2= link_to book.title, book.link, target: :blank
           p= link_to book.author_name, book.author_link, target: :blank
           p= strip_tags book.description
-        td align="right" width="100"= book.publication_year
-        td align="right" width="100"= book.pages
         td align="right" width="100"= book.average_rating
+        td align="right" width="100"= book.amazon_paper_price
+        td align="right" width="100"= book.pages
+        td align="right" width="100"= book.publication_year
         td align="right" width="100"= book.ratings_count
