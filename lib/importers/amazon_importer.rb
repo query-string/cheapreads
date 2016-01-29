@@ -51,11 +51,11 @@ class AmazonImporter
   end
 
   def image_large
-    item["LargeImage"]["URL"]
+    item["LargeImage"]["URL"] if item["LargeImage"].present?
   end
 
   def image_medium
-    item["MediumImage"]["URL"]
+    item["MediumImage"]["URL"] if item["MediumImage"].present?
   end
 
   def url

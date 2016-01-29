@@ -20,7 +20,6 @@ class Book < ApplicationRecord
     book.ratings_count  = gr.book.ratings_count
 
     # Update book properties from Amazon
-    p book.isbn
     book.isbn.present? ? book.amazon_importer : book.goodreads_importer(gr)
 
     # Save populated data
@@ -36,8 +35,8 @@ class Book < ApplicationRecord
   def amazon_importer
     import = AmazonImporter.new(isbn)
 
-    until import.has_errors?
-      self.image              = import.image_medium
+    unless import.has_errors?
+      self.image              = import.image_medium if import.image_medium.present?
       self.pages              = import.number_of_pages
       self.publication_year   = import.publication_year
       self.amazon_url         = import.url
