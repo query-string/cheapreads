@@ -6,9 +6,16 @@ class BooksController < ApplicationController
   def create
     client = Goodreads::Client.new(api_key: ENV["GOODREADS_KEY"], api_secret: ENV["GOODREADS_SECRET"])
     shelf  = client.shelf(current_authentication.uid, "to-read", {per_page: 200})
+    books  = shelf.books
 
-    shelf.books.each { |item| Book.import item } if shelf.books.any?
-    redirect_to root_path, flash: {notice: "Synchronized!"}
+    if books.any?
+      books.each do |item|
+        book = Book.import(item)
+        book.synchronize
+      end
+    end
+
+    redirect_to root_path, flash: { notice: "Synchronized!" }
   end
 
   private

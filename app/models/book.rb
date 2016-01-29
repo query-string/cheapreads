@@ -2,9 +2,39 @@ class Book < ApplicationRecord
   validates :uid, presence: true, uniqueness: true
   validates :title, presence: true
 
+  # 1. Create book from Goodreads API
+  # 2. Update book from Goodreads API
+  # 3. Update book from Amazon API
+
+  def self.import(api)
+    book = where(uid: api.id).first_or_create do |book| # TODO: Must be api.book.id perhaps
+      book.isbn        = api.book.isbn
+      book.title       = api.book.title
+      book.description = api.book.description
+      book.link        = api.book.link
+    end
+
+    book.save
+    book
+  end
+
+  def synchronize
+    synchronize_goodreads
+    synchronize_amazon
+  end
+
+  def synchronize_goodreads
+    importer = GoodreadsImporter.new.import(uid)
+  end
+
+  def synchronize_amazon
+  end
+
+  private
+
   # @TODO: Imporve import process
-  def self.import(gr)
-    # Create book if it haven't existed
+  def self.importz(gr)
+    # Create book if it haven't existed yet
     book = self.where(uid: gr.id).first_or_create do |book|
       book.isbn             = gr.book.isbn
       book.title            = gr.book.title
