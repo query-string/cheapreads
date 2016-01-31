@@ -12,7 +12,6 @@ class GoodreadsImporter
   end
 
   def import(uid)
-    p uid
     book(uid)
   end
 end

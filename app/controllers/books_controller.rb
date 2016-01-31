@@ -4,6 +4,7 @@ class BooksController < ApplicationController
   end
 
   def create
+    # @TODO: Use importer instance for client
     client = Goodreads::Client.new(api_key: ENV["GOODREADS_KEY"], api_secret: ENV["GOODREADS_SECRET"])
     shelf  = client.shelf(current_authentication.uid, "to-read", {per_page: 200})
     books  = shelf.books

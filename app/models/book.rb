@@ -7,7 +7,7 @@ class Book < ApplicationRecord
   # 3. Update book from Amazon API
 
   def self.import(api)
-    book = where(uid: api.id).first_or_create do |book| # TODO: Must be api.book.id perhaps
+    book = where(uid: api.book.id).first_or_create do |book|
       book.isbn        = api.book.isbn
       book.title       = api.book.title
       book.description = api.book.description

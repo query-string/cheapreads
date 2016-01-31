@@ -11,7 +11,7 @@
       td align="right"= link_to "Rated", sort_books_path("ratings_count", params[:order_by] == "DESC" ? "ASC" : "DESC")
     - for book in @books
       tr valign="top"
-        td width="120"= image_tag book.image
+        td width="120"= image_tag book.image if book.image.present?
         td
           h2= link_to book.title, book.link, target: :blank
           p= link_to book.author_name, book.author_link, target: :blank
