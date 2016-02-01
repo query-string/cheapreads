@@ -12,6 +12,7 @@ class Book < ApplicationRecord
       book.title       = api.book.title
       book.description = api.book.description
       book.link        = api.book.link
+      book.date_added  = Date.parse(api.date_added)
     end
 
     book.save
@@ -20,11 +21,12 @@ class Book < ApplicationRecord
 
   def synchronize
     synchronize_goodreads
-    synchronize_amazon
+    #synchronize_amazon
   end
 
   def synchronize_goodreads
-    importer = GoodreadsImporter.new.import(uid)
+    importer = GoodreadsImporter.new(uid)
+    importer.import self
   end
 
   def synchronize_amazon

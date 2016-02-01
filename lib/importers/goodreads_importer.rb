@@ -1,17 +1,58 @@
 class GoodreadsImporter
+  attr_reader :uid
+
+  def initialize(uid)
+    @uid = uid
+  end
+
   def client
     @client ||= Goodreads::Client.new(api_key: ENV["GOODREADS_KEY"], api_secret: ENV["GOODREADS_SECRET"])
   end
 
-  def shelf(uid)
-    client.shelf(uid, "to-read", {per_page: 200})
+  def book
+    @book ||= client.book(uid)
   end
 
-  def book(uid)
-    client.book(uid)
+  def import(book)
+    book.image            = image
+    book.average_rating   = average_rating
+    book.ratings_count    = ratings_count
+    book.pages            = pages
+    book.publication_year = publication_year
+    book.author_name      = author_name
+    book.author_link      = author_link
+    book.save
   end
 
-  def import(uid)
-    book(uid)
+  def image
+    book.image_url
+  end
+
+  def average_rating
+    book.average_rating
+  end
+
+  def ratings_count
+    book.ratings_count
+  end
+
+  def pages
+    book.num_pages
+  end
+
+  def publication_year
+    book.publication_year
+  end
+
+  def author_name
+    book.authors.author.class == Array ? book.authors.author.first.name : book.authors.author.name
+  end
+
+  def author_link
+    book.authors.author.class == Array ? book.authors.author.first.link : book.authors.author.link
+  end
+
+  def language
+    book.language_code
   end
 end
