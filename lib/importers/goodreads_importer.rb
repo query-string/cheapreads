@@ -13,15 +13,15 @@ class GoodreadsImporter
     @book ||= client.book(uid)
   end
 
-  def import(book)
-    book.image            = image
-    book.average_rating   = average_rating
-    book.ratings_count    = ratings_count
-    book.pages            = pages
-    book.publication_year = publication_year
-    book.author_name      = author_name
-    book.author_link      = author_link
-    book.save
+  def import(b)
+    b.image            = image
+    b.average_rating   = average_rating
+    b.ratings_count    = ratings_count
+    b.pages            = pages
+    b.publication_year = publication_year
+    b.author_name      = author_name
+    b.author_link      = author_link
+    b.save
   end
 
   def image
