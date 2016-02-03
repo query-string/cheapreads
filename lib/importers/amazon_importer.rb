@@ -6,13 +6,14 @@ class AmazonImporter
   end
 
   def import(b)
-    #p image_medium
-    #b.image              = image_medium     if image_medium.present?
-    #b.pages              = number_of_pages  unless b.pages.present?
-    #b.publication_year   = publication_year unless b.publication_year.present?
-    #b.amazon_url         = url
-    #b.amazon_paper_price = price
-    #b.save
+    unless has_errors?
+      b.image              = image_medium     if image_medium.present?
+      b.pages              = number_of_pages  unless b.pages.present?
+      b.publication_year   = publication_year unless b.publication_year.present?
+      b.amazon_url         = url
+      b.amazon_paper_price = price
+      b.save
+    end
   end
 
   def response
