@@ -17,8 +17,8 @@ class GoodreadsImporter
     b.image            = image
     b.average_rating   = average_rating
     b.ratings_count    = ratings_count
-    b.pages            = pages
-    b.publication_year = publication_year
+    b.pages            = pages.to_i
+    b.publication_year = publication_year.to_i
     b.author_name      = author_name
     b.author_link      = author_link
     b.save

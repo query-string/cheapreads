@@ -8,8 +8,8 @@ class AmazonImporter
   def import(b)
     unless has_errors?
       b.image              = image_medium     if image_medium.present?
-      b.pages              = number_of_pages  unless b.pages.present?
-      b.publication_year   = publication_year unless b.publication_year.present?
+      b.pages              = number_of_pages.to_i  unless b.pages.present?
+      b.publication_year   = publication_year.to_i unless b.publication_year.present?
       b.amazon_url         = url
       b.amazon_paper_price = price
       b.save
