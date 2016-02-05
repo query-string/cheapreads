@@ -1,4 +1,10 @@
 class Book < ApplicationRecord
+  scope :by_average_rating, ->(order_by) { order("average_rating #{order_by}") }
+  scope :by_amazon_paper_price, ->(order_by) { where("amazon_paper_price != ?", 0).order("amazon_paper_price #{order_by}") }
+  scope :by_pages, ->(order_by) { where("pages != ?", 0).order("pages #{order_by}") }
+  scope :by_publication_year, ->(order_by) { where("publication_year != ?", 0).order("publication_year #{order_by}") }
+  scope :by_ratings_count, ->(order_by) { where("ratings_count != ?", 0).order("ratings_count #{order_by}") }
+
   validates :uid, presence: true, uniqueness: true
   validates :title, presence: true
 

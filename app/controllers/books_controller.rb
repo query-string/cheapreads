@@ -1,6 +1,6 @@
 class BooksController < ApplicationController
   def index
-    @books = Book.all.order("#{sort_by} #{order_by}")
+    @books = Book.all.send("by_#{sort_by}", order_by)
   end
 
   def create
