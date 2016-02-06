@@ -21,6 +21,7 @@ class GoodreadsImporter
     b.publication_year = publication_year.to_i
     b.author_name      = author_name
     b.author_link      = author_link
+    b.language         = language
     b.save
   end
 

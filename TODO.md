@@ -2,7 +2,8 @@
 
 ## Common tweaks
 - [x] Create Goodreads importer
-- [ ] Do something with nil year values
+- [x] Do something with nil year values
+- [ ] Kindle prices parser
 - [ ] Keep price changing history
 - [ ] Keep rating changing history
 - [ ] Relation between books and accounts 
