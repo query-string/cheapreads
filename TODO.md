@@ -1,8 +1,6 @@
 # Cheapreads
 
 ## Common tweaks
-- [x] Create Goodreads importer
-- [x] Do something with nil year values
 - [ ] Kindle prices parser
 - [ ] Keep price changing history
 - [ ] Keep rating changing history
