@@ -12,6 +12,13 @@ class AmazonKindleImporter
     kindle.text
   end
 
+  def import(b)
+    if isbn.present?
+      b.amazon_kindle_price = price.gsub("$", "")
+      b.save
+    end
+  end
+
   private
 
   def url

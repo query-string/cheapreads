@@ -1,6 +1,7 @@
 class Book < ApplicationRecord
   scope :by_average_rating, ->(order_by) { order("average_rating #{order_by}") }
   scope :by_amazon_paper_price, ->(order_by) { where("amazon_paper_price != ?", 0).order("amazon_paper_price #{order_by}") }
+  scope :by_amazon_kindle_price, ->(order_by) { where("amazon_kindle_price != ?", 0).order("amazon_kindle_price #{order_by}") }
   scope :by_pages, ->(order_by) { where("pages != ?", 0).order("pages #{order_by}") }
   scope :by_publication_year, ->(order_by) { where("publication_year != ?", 0).order("publication_year #{order_by}") }
   scope :by_ratings_count, ->(order_by) { where("ratings_count != ?", 0).order("ratings_count #{order_by}") }
@@ -23,7 +24,10 @@ class Book < ApplicationRecord
 
   def synchronize
     synchronize_goodreads
+    sleep 1
     synchronize_amazon
+    sleep 1
+    synchronize_amazon_kindle
   end
 
   def synchronize_goodreads
@@ -33,6 +37,11 @@ class Book < ApplicationRecord
 
   def synchronize_amazon
     importer = AmazonImporter.new(isbn)
+    importer.import self
+  end
+
+  def synchronize_amazon_kindle
+    importer = AmazonKindleImporter.new(isbn)
     importer.import self
   end
 end
