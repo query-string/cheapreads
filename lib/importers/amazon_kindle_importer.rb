@@ -9,12 +9,12 @@ class AmazonKindleImporter
   end
 
   def price
-    kindle.text
+    kindle_price.gsub("$", "") if kindle_price.present?
   end
 
   def import(b)
-    if isbn.present?
-      b.amazon_kindle_price = price.gsub("$", "")
+    if isbn.present? && price.present?
+      b.amazon_kindle_price = price
       b.save
     end
   end
@@ -34,10 +34,14 @@ class AmazonKindleImporter
   end
 
   def buttons
-    page.css("#twister .top-level .dp-price-col .a-color-price")
+    page.css("#tmmSwatches .swatchElement .a-button-text")
   end
 
   def kindle
-    buttons.first
+    buttons.to_a.keep_if { |button| button.css("span").first.text == "Kindle" }.first if buttons.any?
+  end
+
+  def kindle_price
+    kindle.css(".a-color-secondary span").text.strip if kindle.respond_to?("css")
   end
 end
