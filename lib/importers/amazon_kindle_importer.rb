@@ -34,7 +34,11 @@ class AmazonKindleImporter
   end
 
   def buttons
-    page.css("#tmmSwatches .swatchElement .a-button-text")
+    begin
+      page.css("#tmmSwatches .swatchElement .a-button-text")
+    rescue OpenURI::HTTPError
+      []
+    end
   end
 
   def kindle
