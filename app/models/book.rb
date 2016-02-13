@@ -24,6 +24,10 @@ class Book < ApplicationRecord
     book
   end
 
+  def update_average_rating(rating)
+    book_ratings.create(average_rating: rating) if rating != average_rating
+  end
+
   def synchronize
     synchronize_goodreads
     sleep 1

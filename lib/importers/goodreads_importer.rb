@@ -14,6 +14,8 @@ class GoodreadsImporter
   end
 
   def import(b)
+    b.update_average_rating average_rating
+
     b.image            = image if image.nil?
     b.average_rating   = average_rating
     b.ratings_count    = ratings_count
@@ -22,6 +24,7 @@ class GoodreadsImporter
     b.author_name      = author_name
     b.author_link      = author_link
     b.language         = language
+
     b.save
   end
 
