@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160216231046) do
+ActiveRecord::Schema.define(version: 20160216233442) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,14 @@ ActiveRecord::Schema.define(version: 20160216231046) do
     t.string   "token"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "book_paper_prices", force: :cascade do |t|
+    t.integer  "book_id",                          null: false
+    t.float    "amazon_paper_price", default: 0.0
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
+    t.index ["book_id"], name: "index_book_paper_prices_on_book_id", using: :btree
   end
 
   create_table "book_ratings", force: :cascade do |t|
