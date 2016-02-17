@@ -2,9 +2,6 @@ class Book < ApplicationRecord
   validates :uid, presence: true, uniqueness: true
   validates :title, presence: true
 
-  has_many :book_ratings
-  has_many :book_paper_prices
-
   scope :by_average_rating, ->(order_by) { order("average_rating #{order_by}") }
   scope :by_amazon_paper_price, ->(order_by) { where("amazon_paper_price != ?", 0).order("amazon_paper_price #{order_by}") }
   scope :by_amazon_kindle_price, ->(order_by) { where("amazon_kindle_price != ?", 0).order("amazon_kindle_price #{order_by}") }

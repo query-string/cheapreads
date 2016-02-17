@@ -30,6 +30,9 @@ ActiveRecord::Schema.define(version: 20160217000714) do
     t.string   "changed_field",               null: false
     t.float    "changed_value", default: 0.0
     t.datetime "changed_date"
+    t.index ["book_id"], name: "index_book_changes_on_book_id", using: :btree
+    t.index ["changed_field"], name: "index_book_changes_on_changed_field", using: :btree
+    t.index ["changed_value"], name: "index_book_changes_on_changed_value", using: :btree
   end
 
   create_table "books", force: :cascade do |t|

@@ -6,5 +6,8 @@ class CreateBookChanges < ActiveRecord::Migration[5.0]
       t.float :changed_value, default: 0
       t.datetime :changed_date
     end
+    add_index :book_changes, :book_id
+    add_index :book_changes, :changed_field
+    add_index :book_changes, :changed_value
   end
 end
