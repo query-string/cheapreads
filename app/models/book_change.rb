@@ -1,0 +1,2 @@
+class BookChange < ApplicationRecord
+end
