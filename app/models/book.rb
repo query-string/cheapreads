@@ -1,6 +1,7 @@
 class Book < ApplicationRecord
   has_many :average_ratings, -> { where changed_field: "average_rating" }, class_name: BookChange
   has_many :amazon_paper_prices, -> { where changed_field: "amazon_paper_price" }, class_name: BookChange
+  has_many :amazon_kindle_prices, -> { where changed_field: "amazon_kindle_price" }, class_name: BookChange
 
   validates :uid, presence: true, uniqueness: true
   validates :title, presence: true
