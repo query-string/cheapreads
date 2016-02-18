@@ -1,6 +1,6 @@
 class AmazonImporter
   attr_reader :isbn
-
+фьф
   def initialize(isbn)
     @isbn = isbn
   end
