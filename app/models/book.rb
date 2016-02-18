@@ -26,8 +26,9 @@ class Book < ApplicationRecord
     book
   end
 
-  def update_average_rating(rating)
-    book_ratings.create(average_rating: rating) if rating != average_rating
+  def record_book_change(changed_field, changed_value)
+    collection = "#{changed_field}s"
+    self.send(collection).create(changed_value: changed_value, changed_date: Time.now) if self[changed_field] != changed_value
   end
 
   def synchronize

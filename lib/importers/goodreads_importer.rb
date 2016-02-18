@@ -14,7 +14,7 @@ class GoodreadsImporter
   end
 
   def import(b)
-    b.update_average_rating average_rating
+    b.record_book_change :average_rating, average_rating
 
     b.image            = image if image.nil?
     b.average_rating   = average_rating

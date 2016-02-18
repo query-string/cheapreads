@@ -14,6 +14,8 @@ class AmazonKindleImporter
 
   def import(b)
     if isbn.present? && price.present?
+      b.record_book_change :amazon_kindle_price, price
+
       b.amazon_kindle_price = price
       b.save
     end

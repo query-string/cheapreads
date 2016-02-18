@@ -1,12 +1,14 @@
 class AmazonImporter
   attr_reader :isbn
-фьф
+
   def initialize(isbn)
     @isbn = isbn
   end
 
   def import(b)
     unless has_errors?
+      b.record_book_change :amazon_paper_price, price
+
       b.image              = image_medium          if image_medium.present?
       b.pages              = number_of_pages.to_i  unless b.pages.present?
       b.publication_year   = publication_year.to_i unless b.publication_year.present?
