@@ -52,7 +52,7 @@ class AmazonImporter
   end
 
   def offer_lowest_used_price
-    item["OfferSummary"]["LowestUsedPrice"]["Amount"]
+    item["OfferSummary"]["LowestUsedPrice"]["Amount"] if item["OfferSummary"]["LowestUsedPrice"].present?
   end
 
   def number_of_pages
