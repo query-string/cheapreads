@@ -9,7 +9,7 @@ class AmazonKindleImporter
   end
 
   def price
-    kindle_price.gsub("$", "") if kindle_price.present?
+    kindle_price.gsub("$", "").to_f if kindle_price.present?
   end
 
   def import(b)
