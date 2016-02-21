@@ -33,9 +33,7 @@ class Book < ApplicationRecord
 
   def synchronize
     synchronize_goodreads
-    sleep 1
     synchronize_amazon
-    sleep 1
     synchronize_amazon_kindle
   end
 
@@ -47,6 +45,7 @@ class Book < ApplicationRecord
   def synchronize_amazon
     importer = AmazonImporter.new(isbn)
     importer.import self
+    sleep 5
   end
 
   def synchronize_amazon_kindle

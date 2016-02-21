@@ -11,12 +11,12 @@
       td align="right"= link_to "Year", sort_books_path("publication_year", params[:order_by] == "DESC" ? "ASC" : "DESC")
       td align="right"= link_to "Rated", sort_books_path("ratings_count", params[:order_by] == "DESC" ? "ASC" : "DESC")
     - for book in @books
-      tr valign="top"
+      tr valign="top" height="200"
         td width="120"= image_tag book.image if book.image.present?
         td
           h2= link_to book.title, book.link, target: :blank
           p #{link_to book.author_name, book.author_link, target: :blank} #{book.language}
-          p= strip_tags book.description
+          p= truncate(strip_tags(book.description), length: 140)
         td align="right" width="100"= book.average_rating
         td align="right" width="100"= book.amazon_kindle_price
         td align="right" width="100"= book.amazon_paper_price
