@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160224020438) do
+ActiveRecord::Schema.define(version: 20160226235846) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,10 +30,11 @@ ActiveRecord::Schema.define(version: 20160224020438) do
     t.string   "changed_field",               null: false
     t.float    "changed_value", default: 0.0
     t.datetime "changed_date"
-    t.index ["book_id"], name: "index_book_changes_on_book_id", using: :btree
-    t.index ["changed_field"], name: "index_book_changes_on_changed_field", using: :btree
-    t.index ["changed_value"], name: "index_book_changes_on_changed_value", using: :btree
   end
+
+  add_index "book_changes", ["book_id"], name: "index_book_changes_on_book_id", using: :btree
+  add_index "book_changes", ["changed_field"], name: "index_book_changes_on_changed_field", using: :btree
+  add_index "book_changes", ["changed_value"], name: "index_book_changes_on_changed_value", using: :btree
 
   create_table "books", force: :cascade do |t|
     t.integer  "uid"
@@ -58,12 +59,13 @@ ActiveRecord::Schema.define(version: 20160224020438) do
     t.float    "previous_average_rating",      default: 0.0
     t.float    "previous_amazon_paper_price",  default: 0.0
     t.float    "previous_amazon_kindle_price", default: 0.0
-    t.index ["amazon_kindle_price"], name: "index_books_on_amazon_kindle_price", using: :btree
-    t.index ["amazon_paper_price"], name: "index_books_on_amazon_paper_price", using: :btree
-    t.index ["pages"], name: "index_books_on_pages", using: :btree
-    t.index ["publication_year"], name: "index_books_on_publication_year", using: :btree
-    t.index ["ratings_count"], name: "index_books_on_ratings_count", using: :btree
-    t.index ["uid"], name: "index_books_on_uid", using: :btree
   end
+
+  add_index "books", ["amazon_kindle_price"], name: "index_books_on_amazon_kindle_price", using: :btree
+  add_index "books", ["amazon_paper_price"], name: "index_books_on_amazon_paper_price", using: :btree
+  add_index "books", ["pages"], name: "index_books_on_pages", using: :btree
+  add_index "books", ["publication_year"], name: "index_books_on_publication_year", using: :btree
+  add_index "books", ["ratings_count"], name: "index_books_on_ratings_count", using: :btree
+  add_index "books", ["uid"], name: "index_books_on_uid", using: :btree
 
 end
