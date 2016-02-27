@@ -18,8 +18,8 @@
           p #{link_to book.author_name, book.author_link, target: :blank} #{book.language}
           p= truncate(strip_tags(book.description), length: 140)
         td align="right" width="100"= book.average_rating
-        td align="right" width="100"= book.amazon_kindle_price
-        td align="right" width="100"= book.amazon_paper_price
+        td align="right" width="100"= compare_changes(book, :amazon_kindle_price)
+        td align="right" width="100"= compare_changes(book, :amazon_paper_price)
         td align="right" width="100"= book.pages
         td align="right" width="100"= book.publication_year
         td align="right" width="100"= book.ratings_count

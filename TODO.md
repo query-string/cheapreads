@@ -2,9 +2,10 @@
 
 ## Common tweaks
 - [x] Keep history of changes
-- [ ] Highlight changed prices
+- [x] Highlight changed prices
+- [x] Display history of changes
+- [ ] Drop previous average rating values \_(ツ)_/¯
 - [ ] Update previous values after history update
-- [ ] Display history of changes
 - [ ] Set isbn if it was not defined by Goodreads
 - [ ] Relation between books and accounts 
 - [ ] Separate creation and update actions (by background jobs?)
