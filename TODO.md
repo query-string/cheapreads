@@ -1,5 +1,8 @@
 # Cheapreads
 
+## Bugs
+- [ ] Authhorize after first login
+
 ## Common tweaks
 - [x] Keep history of changes
 - [x] Highlight changed prices
