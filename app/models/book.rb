@@ -28,7 +28,10 @@ class Book < ApplicationRecord
 
   def record_book_change(changed_field, changed_value)
     collection = "#{changed_field}s"
-    self.send(collection).create(changed_value: changed_value, changed_date: Time.now) if self[changed_field] != changed_value
+    if self[changed_field] != changed_value
+      self.send(collection).create(changed_value: changed_value, changed_date: Time.now)
+      self.change_column("previous_#{changed_field}", changed_value)
+    end
   end
 
   def synchronize

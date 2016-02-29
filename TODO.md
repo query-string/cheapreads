@@ -1,7 +1,7 @@
 # Cheapreads
 
 ## Bugs
-- [ ] Authhorize after first login
+- [x] Authhorize after first login
 
 ## Common tweaks
 - [x] Keep history of changes
