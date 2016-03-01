@@ -17,7 +17,7 @@ class Authentication::OmniauthController < ApplicationController
   def create_authentication(omniauth)
     authentication = Authentication.new(provider: omniauth.provider, uid: omniauth.uid, secret: omniauth.credentials.secret, token: omniauth.credentials.token)
     notice         = if authentication.save 
-      session[:authentication] = authentication.first
+      session[:authentication] = authentication
       "Succesfully created"
     else
       "Something went wrong..."
