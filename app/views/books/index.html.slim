@@ -23,3 +23,5 @@
         td align="right" width="100"= book.pages
         td align="right" width="100"= book.publication_year
         td align="right" width="100"= book.ratings_count
+- else
+  p Your list of books is empty at the moment. Would you like to #{link_to "synchronize it", books_path, method: :post} (might take a while)?
