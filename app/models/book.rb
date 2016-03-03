@@ -30,7 +30,7 @@ class Book < ApplicationRecord
     collection = "#{changed_field}s"
     if self[changed_field] != changed_value
       self.send(collection).create(changed_value: changed_value, changed_date: Time.now)
-      self.change_column("previous_#{changed_field}", changed_value)
+      self.update_column("previous_#{changed_field}", changed_value)
     end
   end
 
