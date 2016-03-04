@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160226235846) do
+ActiveRecord::Schema.define(version: 20160420125854) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,6 +24,14 @@ ActiveRecord::Schema.define(version: 20160226235846) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "authentications_books", force: :cascade do |t|
+    t.integer "book_id"
+    t.integer "authentication_id"
+  end
+
+  add_index "authentications_books", ["authentication_id"], name: "index_authentications_books_on_authentication_id", using: :btree
+  add_index "authentications_books", ["book_id"], name: "index_authentications_books_on_book_id", using: :btree
 
   create_table "book_changes", force: :cascade do |t|
     t.integer  "book_id",                     null: false
@@ -68,4 +76,6 @@ ActiveRecord::Schema.define(version: 20160226235846) do
   add_index "books", ["ratings_count"], name: "index_books_on_ratings_count", using: :btree
   add_index "books", ["uid"], name: "index_books_on_uid", using: :btree
 
+  add_foreign_key "authentications_books", "authentications"
+  add_foreign_key "authentications_books", "books"
 end

@@ -1,4 +1,6 @@
 class Authentication < ApplicationRecord
+  has_and_belongs_to_many :books
+
   scope :with_uid, ->(uid) { where("uid = ?", uid) }
 
   validates :provider, presence: true
