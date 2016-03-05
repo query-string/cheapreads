@@ -1,0 +1,2 @@
+class AuthenticationsBook < ApplicationRecord
+end
