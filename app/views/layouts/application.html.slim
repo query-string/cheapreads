@@ -1,5 +1,6 @@
 doctype html
 html
+
   head
     meta content=("text/html; charset=UTF-8") http-equiv="Content-Type" /
     title Cheapreads
@@ -7,11 +8,21 @@ html
     = action_cable_meta_tag
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = stylesheet_link_tag 'application', media: 'all'
+
   body
-    h1= link_to "cheapreads", root_path
-    - if current_authentication
-      | #{link_to "synchronize books", books_path, method: :post} #{link_to "logout", authentication_path(current_authentication.id), method: :delete}
-    - else
-      = link_to "login", "/authentication/goodreads"
+
+    table width="100%" border="0"
+      tr
+        td
+          h1= link_to "cheapreads", root_path
+        td align="right"
+          - if current_authentication
+            | #{link_to "synchronize books", books_path, method: :post} #{link_to "logout", authentication_path(current_authentication.id), method: :delete}
+          - else
+            = link_to "login", "/authentication/goodreads"
     hr
+
+    ul
+      li= link_to "All books", root_path
+
     = yield
