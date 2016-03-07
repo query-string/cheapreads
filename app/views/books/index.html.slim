@@ -4,12 +4,12 @@
       td
       td
       - # @TODO: Wrap up to helper
-      td align="right"= link_to "Rating", sort_books_path("average_rating", params[:order_by] == "DESC" ? "ASC" : "DESC")
-      td align="right"= link_to "Kindle price", sort_books_path("amazon_kindle_price", params[:order_by] == "ASC" ? "DESC" : "ASC")
-      td align="right"= link_to "Paper price", sort_books_path("amazon_paper_price", params[:order_by] == "ASC" ? "DESC" : "ASC")
-      td align="right"= link_to "Pages", sort_books_path("pages", params[:order_by] == "ASC" ? "DESC" : "ASC")
-      td align="right"= link_to "Year", sort_books_path("publication_year", params[:order_by] == "DESC" ? "ASC" : "DESC")
-      td align="right"= link_to "Rated", sort_books_path("ratings_count", params[:order_by] == "DESC" ? "ASC" : "DESC")
+      td align="right"= link_to "Rating", sort_books_path(@scope, "average_rating", params[:order_by] == "DESC" ? "ASC" : "DESC")
+      td align="right"= link_to "Kindle price", sort_books_path(@scope, "amazon_kindle_price", params[:order_by] == "ASC" ? "DESC" : "ASC")
+      td align="right"= link_to "Paper price", sort_books_path(@scope, "amazon_paper_price", params[:order_by] == "ASC" ? "DESC" : "ASC")
+      td align="right"= link_to "Pages", sort_books_path(@scope, "pages", params[:order_by] == "ASC" ? "DESC" : "ASC")
+      td align="right"= link_to "Year", sort_books_path(@scope, "publication_year", params[:order_by] == "DESC" ? "ASC" : "DESC")
+      td align="right"= link_to "Rated", sort_books_path(@scope, "ratings_count", params[:order_by] == "DESC" ? "ASC" : "DESC")
     - for book in @books
       tr valign="top" height="200"
         td width="120"= image_tag book.image if book.image.present?

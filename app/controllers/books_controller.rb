@@ -1,5 +1,6 @@
 class BooksController < ApplicationController
   def index
+    @scope = params[:scope].present? ? params[:scope] : :all
     @books = Book.all.send("by_#{sort_by}", order_by)
   end
 
