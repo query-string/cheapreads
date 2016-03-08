@@ -3,6 +3,6 @@ class ApplicationController < ActionController::Base
   helper_method :current_authentication
 
   def current_authentication
-    session[:authentication].present? ? OpenStruct.new(session[:authentication]) : nil
+    @current_authentication ||= session[:authentication].present? ? Authentication.find(session[:authentication][:id]) : nil
   end
 end

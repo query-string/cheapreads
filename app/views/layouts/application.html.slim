@@ -24,5 +24,7 @@ html
 
     ul
       li= link_to "All books", root_path
+      - if current_authentication
+        li= link_to "My books", scope_books_path(:my)
 
     = yield
