@@ -13,7 +13,7 @@ class BooksController < ApplicationController
 
     if books.any?
       books.each do |item|
-        book = Book.import(item)
+        book = Book.import(item, current_authentication)
         book.synchronize
       end
     end

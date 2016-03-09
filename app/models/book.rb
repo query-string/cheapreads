@@ -14,8 +14,8 @@ class Book < ApplicationRecord
   scope :by_publication_year, ->(order_by) { where("publication_year != ?", 0).order("publication_year #{order_by}") }
   scope :by_ratings_count, ->(order_by) { where("ratings_count != ?", 0).order("ratings_count #{order_by}") }
 
-  def self.import(api)
-    book = where(uid: api.book.id).first_or_create do |book|
+  def self.import(api, authentication)
+    book = authentication.books.where(uid: api.book.id).first_or_create do |book|
       book.isbn        = api.book.isbn
       book.title       = api.book.title
       book.description = api.book.description
