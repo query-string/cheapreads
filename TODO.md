@@ -6,6 +6,6 @@
 ## Common tweaks
 - [x] Display all ACCOUNT/SYSTEM books
 - [x] Add books to account after update
-- [ ] Synchronize goodreads books and account books
+- [ ] User books synchronization – dedicated task
+- [ ] Existed books stats update – dedicated task (background job)
 - [ ] Set isbn if it was not defined by Goodreads
-- [ ] Separate creation and update actions (by background jobs?)
