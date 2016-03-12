@@ -1,8 +1,8 @@
 class BooksController < ApplicationController
   def index
     @scope   = params[:scope].present? ? params[:scope] : :all
-    resource = @scope == :all ? Book.send("by_#{sort_by}", order_by) : current_authentication
-    @books   = resource.books.send("by_#{sort_by}", order_by)
+    resource = @scope == :all ? Book.all : current_authentication.books
+    @books   = resource.send("by_#{sort_by}", order_by)
   end
 
   def create
