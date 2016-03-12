@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160420133041) do
+ActiveRecord::Schema.define(version: 20160426235948) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -75,6 +75,17 @@ ActiveRecord::Schema.define(version: 20160420133041) do
   add_index "books", ["publication_year"], name: "index_books_on_publication_year", using: :btree
   add_index "books", ["ratings_count"], name: "index_books_on_ratings_count", using: :btree
   add_index "books", ["uid"], name: "index_books_on_uid", using: :btree
+
+  create_table "que_jobs", primary_key: ["queue", "priority", "run_at", "job_id"], force: :cascade do |t|
+    t.integer   "priority",    limit: 2, default: 100,            null: false
+    t.datetime  "run_at",                default: -> { "now()" }, null: false
+    t.bigserial "job_id",      limit: 8,                          null: false
+    t.text      "job_class",                                      null: false
+    t.json      "args",                  default: [],             null: false
+    t.integer   "error_count",           default: 0,              null: false
+    t.text      "last_error"
+    t.text      "queue",                 default: "",             null: false
+  end
 
   add_foreign_key "authentications_books", "authentications"
   add_foreign_key "authentications_books", "books"
