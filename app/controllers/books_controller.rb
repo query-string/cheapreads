@@ -6,6 +6,19 @@ class BooksController < ApplicationController
   end
 
   def create
+    client  = Goodreads::Client.new(api_key: ENV["GOODREADS_KEY"], api_secret: ENV["GOODREADS_SECRET"])
+    shelf   = client.shelf(current_authentication.uid, "to-read", {per_page: 200})
+
+    gr_shelf     = shelf.books.map { |g| g.book.id }
+    local_shelf  = current_authentication.books.map(&:uid)
+    new_arrivals = gr_shelf - local_shelf
+    read_already = local_shelf - gr_shelf
+
+    # Remove already read books from the list
+    Book.where("uid IN (?)", read_already).each { |book| current_authentication.books.delete(book) } if read_already.any?
+  end
+
+  def creates
     # @TODO: Use importer instance for client
     client = Goodreads::Client.new(api_key: ENV["GOODREADS_KEY"], api_secret: ENV["GOODREADS_SECRET"])
     shelf  = client.shelf(current_authentication.uid, "to-read", {per_page: 200})
