@@ -1,7 +1,8 @@
 class BooksController < ApplicationController
   def index
     @scope   = params[:scope].present? ? params[:scope] : :all
-    resource = @scope == :all ? Book.all : current_authentication.books
+    resource = Book.all
+    resource = current_authentication.books if current_authentication.present? && @scope != :all
     @books   = resource.send("by_#{sort_by}", order_by)
   end
 
@@ -18,8 +19,8 @@ class BooksController < ApplicationController
     # Add new arrivals to the person list
     if new_arrivals.any?
       shelf.select { |g| new_arrivals.include?(g.book.id) }.each do |item|
-        BooksImportJob.enqueue(item, current_authentication.id)
-        #book = Book.import(item, current_authentication)
+        #BooksImportJob.enqueue(item, current_authentication.id)
+        book = Book.import(item, current_authentication)
         #book.synchronize
       end
     end
