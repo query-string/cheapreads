@@ -27,6 +27,7 @@ gem "xml-simple"
 gem "vacuum"
 gem "nokogiri"
 gem "que"
+gem "hashugar"
 
 # Use jquery as the JavaScript library
 gem "jquery-rails"

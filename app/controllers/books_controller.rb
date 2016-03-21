@@ -19,8 +19,8 @@ class BooksController < ApplicationController
     # Add new arrivals to the person list
     if new_arrivals.any?
       shelf.select { |g| new_arrivals.include?(g.book.id) }.each do |item|
-        #BooksImportJob.enqueue(item, current_authentication.id)
-        book = Book.import(item, current_authentication)
+        BooksImportJob.enqueue(item, current_authentication.id)
+        #book = Book.import(item, current_authentication)
         #book.synchronize
       end
     end
