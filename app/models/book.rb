@@ -23,8 +23,8 @@ class Book < ApplicationRecord
       book.date_added  = Date.parse(api.date_added)
     end
 
-    #book.save
-    #book
+    book.save
+    book
   end
 
   def record_book_change(changed_field, changed_value)
